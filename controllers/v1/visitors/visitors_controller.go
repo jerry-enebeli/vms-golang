@@ -5,6 +5,7 @@ import (
 	"time"
 	dbs "vms/config/db"
 	"vms/config/responses"
+	"vms/libs/files"
 	httplib "vms/libs/http"
 
 	"gopkg.in/mgo.v2/bson"
@@ -23,6 +24,11 @@ var (
 
 //UploadImage controller
 func UploadImage(res http.ResponseWriter, req *http.Request) {
+	url := files.UploadFile("image", req)
+
+	resp := responses.GeneralResponse{Success: true, Data: url, Message: "image uploaded"}
+
+	httplib.Response(res, resp)
 }
 
 //RegisterVistor controller

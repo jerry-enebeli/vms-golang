@@ -135,7 +135,7 @@ func Checkout(res http.ResponseWriter, req *http.Request) {
 	} else {
 		db = dbs.ConnectMongodb()
 	}
-
+	
 	defer db.Close()
 
 	coll := db.DB(dbName).C(dbCollection)

@@ -98,20 +98,6 @@ func AuthorizationChain(next http.Handler) http.Handler {
 	})
 }
 
-// //AccessLogToFile saves sever logs to a specifiied file (access.log)
-// func AccessLogToFile(r http.HandlerFunc) http.HandlerFunc {
-// 	return http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
-// 		f, err := os.OpenFile("access.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
-// 		if err != nil {
-// 			log.Panic("Access log: ", err)
-// 		}
-
-// 		logger := handlers.CombinedLoggingHandler(f, r)
-
-// 		logger.ServeHTTP(w, req)
-// 	})
-// }
-
 //AccessLogToConsole prints sever logs to the terminal
 func AccessLogToConsole(r http.Handler) http.Handler {
 

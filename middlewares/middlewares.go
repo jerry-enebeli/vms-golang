@@ -5,10 +5,9 @@ import (
 	"net/http"
 	"os"
 	"strings"
+	"vms/config/responses"
+	httplib "vms/libs/http"
 
-	httplib "bitbucket.org/eviconlabs/platphom_backend/delivery/http/libs/http"
-
-	"bitbucket.org/eviconlabs/platphom_backend/config/responses"
 	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/gorilla/context"
 	"github.com/gorilla/handlers"
@@ -48,7 +47,7 @@ func AuthorizationSingle(next http.HandlerFunc) http.HandlerFunc {
 					return []byte("secret"), nil
 				})
 				if error != nil {
-					resp := &responses.GeneralResponse{Success: false, Message: "token error", Error: error.Error()}
+					resp := responses.GeneralResponse{Success: false, Message: "token error", Error: error.Error()}
 					httplib.Response(w, resp)
 				}
 				if token.Valid {
@@ -80,7 +79,7 @@ func AuthorizationChain(next http.Handler) http.Handler {
 					return []byte("secret"), nil
 				})
 				if error != nil {
-					resp := &responses.GeneralResponse{Success: false, Message: "token error", Error: error.Error()}
+					resp := responses.GeneralResponse{Success: false, Message: "token error", Error: error.Error()}
 					httplib.Response(w, resp)
 				}
 				if token.Valid {
